@@ -297,7 +297,6 @@ body {
 
 @media (max-width: 991px){
 
-    /* NAVBAR SAFE LAYER */
     .pnav{
         padding:16px 20px;
         position:fixed;
@@ -775,7 +774,7 @@ body {
 @media (max-width:768px){
 
     .slider::after{
-        height:150px;
+        height:110px;
     }
 
     .thumbs{
@@ -807,7 +806,7 @@ body {
 @media (max-width:576px){
 
     .slider::after{
-        height:130px;
+        height:90px;
     }
 
     .thumbs{
@@ -826,23 +825,7 @@ body {
 
 }
 
-@media (max-width:400px){
 
-    .slider::after{
-        height:115px;
-    }
-
-    .thumbs{
-        gap:5px;
-        padding:8px;
-    }
-
-    .thumb{
-        width:60px;
-        height:55px;
-    }
-
-}
 
 
 /* banar section End */
