@@ -259,89 +259,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+// about section start card 
 
-// gsap section start not work about img 
+document.addEventListener("DOMContentLoaded", () => {
 
-window.addEventListener('load', () => {
+    const reveals = document.querySelectorAll(".reveal");
 
-  if (typeof gsap === "undefined") {
-    console.error("GSAP library not loaded");
-    return;
-  }
+    if (reveals.length === 0) return;
 
-  if (document.querySelector(".animate-box")) {
-
-    gsap.to(".animate-box", {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: "power3.out",
-      delay: 0.2
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target); // ek baar animation
+            }
+        });
+    }, {
+        threshold: 0.2
     });
 
-  }
+    reveals.forEach(item => observer.observe(item));
 
 });
 
 
-// About gsap card section
 
-if (document.querySelector(".card-container") && document.querySelectorAll(".card").length > 0) {
+// about img section start 
 
-  gsap.from(".card", {
-    y: 40,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.2,
-    ease: "power2.out",
+document.addEventListener("DOMContentLoaded", function () {
 
-    scrollTrigger: {
-      trigger: ".card-container",
-      start: "top 95%",
-      end: "bottom 80%",
-      toggleActions: "play none none none",
-      once: true
-    }
-  });
+    const elements = document.querySelectorAll(".reveal");
 
-}
-// About gsap card section end
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    });
+
+    elements.forEach(function (el) {
+        observer.observe(el);
+    });
+
+});
 
 
 
 
 
 
-// servive  gsap section start 
+// service section start card
 
-gsap.registerPlugin(ScrollTrigger);
+const reveals = document.querySelectorAll(".reveal");
 
-gsap.utils.toArray(".gallery-card").forEach((card, index) => {
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
 
-    gsap.to(card,{
-
-        opacity:1,
-        y:0,
-
-        duration:1,
-
-        ease:"power3.out",
-
-        delay:index * 0.08,
-
-        scrollTrigger:{
-            trigger:card,
-            start:"top 85%",
-            toggleActions:"play none none none"
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
         }
 
     });
-
+},{
+    threshold:0.2
 });
 
-
-
-
+reveals.forEach((item)=>{
+    observer.observe(item);
+});
 
 
 // portfolio slider section start
