@@ -91,6 +91,10 @@
   text-transform: uppercase;
 }
 
+.chapter-line span{
+  color: #ffffff;
+}
+
 .chapter-line {
   font-family: 'Helvetica', 'Arial', sans-serif;
   font-weight: 700;
@@ -195,12 +199,16 @@
     .chapter-content p{
         max-width:100%;
         font-size:15px;
+        margin-bottom: -100px;
     }
 
 }
 
 @media (max-width: 768px) {
-  .chapter-line { font-size: 14vw; letter-spacing: -2px; }
+  .chapter-line {
+     font-size: 14vw;
+      letter-spacing: -2px; 
+    }
 }
 
 
@@ -236,7 +244,11 @@
 }
 
 @media (max-width: 768px) {
-  .image-container { width: 95%; height: 35vh; }
+  .image-container {
+   margin-bottom: -100px;
+     width: 95%;
+      height: 35vh;
+     }
 }
 
 

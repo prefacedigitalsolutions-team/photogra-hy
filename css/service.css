@@ -106,11 +106,19 @@
 .hero-container .line:nth-child(3) { animation-delay: 2.5s; } 
 .hero-container .line:nth-child(4) { animation-delay: 3.0s; } 
 
+@media (max-width: 768px) {
+    .hero img{
+        height: 80vh; 
+    }
+}
+
+
 
 @media (max-width: 768px) {
   .hero-container {
     width: 90%; 
     min-height: 80vh;
+  
   }
 
   .hero-container .line {
@@ -123,15 +131,25 @@
 @media (max-width: 480px) {
   .hero-container {
     width: 95%;
+    
   }
 
   .hero-container .line {
     font-size: 14vw; 
     letter-spacing: -1px;
+   
   }
 }
 
+@media (max-width: 768px) {
+    .hero {
+        height: 500px; 
+        margin-bottom: 0; 
+        padding-bottom: 0;
+    }
 
+   
+}
 
 
 /* intro section End */
