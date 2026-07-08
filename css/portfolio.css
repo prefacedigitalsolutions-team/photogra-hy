@@ -72,7 +72,7 @@
 @media (max-width: 480px) {
   .portfolio-container {
     padding: 0px 20px;
-    margin-top: -100px;
+    margin-top: 25px;
 
   }
   .portfolio-line {
@@ -82,7 +82,12 @@
 }
 
 
-
+@media (max-width: 768px) {
+  .portfolio-container {
+    padding: 10px 20px;
+    min-height: auto;
+  }
+}
 
 /* Intro section End */
 
@@ -116,6 +121,7 @@
 @media (max-width: 768px) {
     .gray-patti {
       
+         margin-top: 10px;  
         height: auto;
         padding: 12px 20px;   
     }

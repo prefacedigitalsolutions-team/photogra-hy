@@ -332,45 +332,64 @@ reveals.forEach((item)=>{
 
 // portfolio slider section start
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
-let index = 0;
+    let index = 0;
 
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
 
-function showSlide(i) {
-    slides.forEach((s, idx) => {
-        s.classList.remove("active");
-        dots[idx].classList.remove("active");
-    });
+    function showSlide(i) {
+        // Safe check: Agar slides aur dots page par hain, tabhi run kare
+        if (slides.length > 0 && dots.length > 0) {
+            slides.forEach((s, idx) => {
+                s.classList.remove("active");
+                if(dots[idx]) dots[idx].classList.remove("active");
+            });
 
-    slides[i].classList.add("active");
-    dots[i].classList.add("active");
-}
+            if(slides[i]) slides[i].classList.add("active");
+            if(dots[i]) dots[i].classList.add("active");
+        }
+    }
 
-function next() {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-}
+    function next() {
+        if (slides.length > 0) {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        }
+    }
 
-function prev() {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-}
+    function prev() {
+        if (slides.length > 0) {
+            index = (index - 1 + slides.length) % slides.length;
+            showSlide(index);
+        }
+    }
 
-document.querySelector(".next").addEventListener("click", next);
-document.querySelector(".prev").addEventListener("click", prev);
+    // ⭐ ERROR FIX: Pehle check karein ki buttons page par hain ya nahi
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
 
-dots.forEach((d, i) => {
-    d.addEventListener("click", () => {
-        index = i;
-        showSlide(index);
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener("click", next);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener("click", prev);
+    }
+
+    // Dots par event listener bhi tabhi lage jab dots page par hon
+    if (dots.length > 0) {
+        dots.forEach((d, i) => {
+            d.addEventListener("click", () => {
+                index = i;
+                showSlide(index);
+            });
+        });
+    }
+
+    // Auto-slide bhi tabhi chale jab actually slides maujud hon page par
+    if (slides.length > 0) {
+        setInterval(next, 4000);
+    }
+
 });
-
-setInterval(next, 4000);
-
-});
-
