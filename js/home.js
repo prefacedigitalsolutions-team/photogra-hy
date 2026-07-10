@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dots = document.querySelectorAll(".dot");
 
     function showSlide(i) {
-        // Safe check: Agar slides aur dots page par hain, tabhi run kare
+        // Safe check: Agar slides aur dots page par hai tabhi run ho 
         if (slides.length > 0 && dots.length > 0) {
             slides.forEach((s, idx) => {
                 s.classList.remove("active");
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ⭐ ERROR FIX: Pehle check karein ki buttons page par hain ya nahi
+    //  ERROR FIX: chek buttons
     const nextBtn = document.querySelector(".next");
     const prevBtn = document.querySelector(".prev");
 
@@ -375,9 +375,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (prevBtn) {
         prevBtn.addEventListener("click", prev);
-    }
+    }           
 
-    // Dots par event listener bhi tabhi lage jab dots page par hon
+    // Dots par event listener bhi tabhi lage jab dots page par ho
     if (dots.length > 0) {
         dots.forEach((d, i) => {
             d.addEventListener("click", () => {
@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Auto-slide bhi tabhi chale jab actually slides maujud hon page par
+    // Auto-slide tab chalega jab slider ho page par
     if (slides.length > 0) {
         setInterval(next, 4000);
     }
