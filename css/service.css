@@ -159,6 +159,34 @@
 
 /* galary section start */
 
+.front{
+    position: relative;
+    overflow: hidden;
+}
+
+.front::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55px;   
+    background: rgba(0,0,0,.75);
+}
+
+.card-title{
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    width: 100%;
+
+    text-align: center;
+
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    z-index: 2;
+}
 
 .flip-box{
     padding:50px 80px;
@@ -236,4 +264,32 @@
     }
 }
 
+
+
+@media (max-width: 768px){
+
+    .front::after{
+        height: 40%;
+    }
+
+    .card-title{
+        font-size: 20px;
+        bottom: 16px;
+    }
+
+}
+
+
+@media (max-width: 480px){
+
+    .front::after{
+        height: 45%;
+    }
+
+    .card-title{
+        font-size: 18px;
+        bottom: 14px;
+    }
+
+}
 /* galary section End  */
