@@ -78,61 +78,101 @@
 <!-- Banar section start --> 
 
 <div class="slider">
-
-    <!-- Slides -->         
-   <div class="slides">
+<!-- Slides -->         
+<div class="slides">
 
     <div class="slide">
-        <img src="img/product/1.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/m-1.jpg">
+            <img src="img/product/1.jpg" alt="">
+        </picture>
         <h2 class="slide-title">01 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/product/2.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/m-1.jpg">
+            <img src="img/product/2.jpg" alt="">
+        </picture>
         <h2 class="slide-title">02 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/jwelry/1.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/m-1.jpg">
+            <img src="img/jwelry/1.jpg" alt="">
+        </picture>
         <h2 class="slide-title">03 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/jwelry/2.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/m-1.jpg">
+            <img src="img/jwelry/2.jpg" alt="">
+        </picture>
         <h2 class="slide-title">04 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/interior/1.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/interior/1.jpg">
+            <img src="img/interior/1.jpg" alt="">
+        </picture>
         <h2 class="slide-title">05 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/interior/4.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/interior/4.jpg">
+            <img src="img/interior/4.jpg" alt="">
+        </picture>
         <h2 class="slide-title">06 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/home/home-product-banar-1.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/home-product-banar-1.jpg">
+            <img src="img/home/home-product-banar-1.jpg" alt="">
+        </picture>
         <h2 class="slide-title">07 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/home/home-food-banar-03.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/home-food-banar-03.jpg">
+            <img src="img/home/home-food-banar-03.jpg" alt="">
+        </picture>
         <h2 class="slide-title">08 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/home/home-banar-2.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/home-banar-2.jpg">
+            <img src="img/home/home-banar-2.jpg" alt="">
+        </picture>
         <h2 class="slide-title">09 Fresh Food Experience</h2>
     </div>
 
+
     <div class="slide">
-        <img src="img/home/home-product-banar-1.jpg" alt="">
+        <picture>
+            <source media="(max-width: 767px)" srcset="img/home/home-product-banar-1.jpg">
+            <img src="img/home/home-product-banar-1.jpg" alt="">
+        </picture>
         <h2 class="slide-title">10 Fresh Food Experience</h2>
     </div>
 
 </div>
+
+
 
     <!-- Thumbnails -->
     <div class="thumbs">
@@ -162,7 +202,18 @@
 
 <!-- banar section End-->
 
+<style>
 
+    .slides .slide picture,
+.slides .slide picture img {
+    width: 100%;
+    display: block;
+}
+
+.slides .slide img {
+    object-fit: cover;
+}
+</style>
 
 <!-- JS -->
 <script src="js/home.js"></script>

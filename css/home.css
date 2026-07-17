@@ -409,6 +409,14 @@ body {
         width:100%;
     }
 
+
+    .pnav__logo img{
+        margin-top: 15px;
+    width:150px;
+    height:auto;
+    display:block;
+}
+
 }
 
 /* Nav section End*/
@@ -844,7 +852,7 @@ body {
     overflow: hidden;
     background: #100f0f;
     color: #fff;
-    padding: 80px 0 30px;
+    padding: 60px 0 30px;
     isolation: isolate;
 }
 
@@ -854,7 +862,7 @@ body {
     position: absolute;
 
     width: 850px;
-    height: 850px;
+    height: 250px;
 
     top: 50%;
     left: 50%;
@@ -870,6 +878,7 @@ body {
 
         radial-gradient(circle,
             transparent 18%,
+        
             rgba(255,255,255,.06) 19%,
             transparent 20%),
 
@@ -902,7 +911,7 @@ body {
     position: absolute;
 
     width: 260px;
-    height: 260px;
+    height: 160px;
 
     top: 35%;
     left: 45%;

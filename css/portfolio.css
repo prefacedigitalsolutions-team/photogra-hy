@@ -94,6 +94,7 @@
 
 @media (max-width: 768px) {
     .slider {
+    
         height: 350px;
         margin: 25px auto 70px auto;
         border-radius: 8px;
@@ -116,8 +117,8 @@
 
 @media (max-width: 480px) {
     .slider {
-        height: 280px;
-        margin: 30px auto 60px auto;
+        height: 320px;
+        margin: 90px auto 60px auto;
     }
 
     .prev, .next {
