@@ -74,6 +74,8 @@
 
         <li><a href="contact.html">Contact us</a></li>
 
+        <li class="pnav__phone"><a href="tel:+919810968828">📞 +91 98109 68828</a></li>
+
     </ul>
 
 </nav>
@@ -83,17 +85,29 @@
 
 
 
-<!-- Banar section start --> 
 
-<div class="slider-container">
-  <div class="slider-track">
-    <img src="../img/home/home-banar-2.jpg" alt="Slide 1">
-    <img src="../img/home/home-food-banar-03.jpg" alt="Slide 2">
-    <img src="../img/home/home-banar-2.jpg" alt="Slide 1">
-  </div>
-</div>
+<!-- banar section start -->
+
+<section class="rrv-container">
+    <div class="rrv-text-panel">
+        <h2 class="rrv-heading">A STUDIO THAT TREATS EACH FRAME AS WORK.</h2>
+        <p class="rrv-subtext">  We create purposeful digital experiences that combine strategy,
+            design, and technology</p>
+        
+        <div class="rrv-list-wrapper">
+            <div id="rrv-item-1" class="rrv-list-item">Never stop improving</div>
+            <div id="rrv-item-2" class="rrv-list-item">Make faster decisions</div>
+            <div id="rrv-item-3" class="rrv-list-item">Become resilient and agile</div>
+        </div>
+    </div>
+
+    <div class="rrv-visual-panel">
+        <canvas id="rrv-light-canvas"></canvas>
+    </div>
+</section>
 
 <!-- banar section End-->
+
 
 
 
@@ -103,7 +117,7 @@
 <section class="chapter-section">
 
     <div class="chapter-container">
-        <div class="chapter-label">CHAPTER 01</div>
+       <!--  <div class="chapter-label">CHAPTER 01</div> -->
         <div class="chapter-line">A STUDIO</div>
         <div class="chapter-line">THAT</div>
         <div class="chapter-line"><span>TREATS</span></div>
@@ -130,92 +144,235 @@
 
 </section>
 
-<!-- horigental row -->
-<hr class="section-divider">
+<!-- horigental row    <hr class="section-divider">-->
+
 
 <!-- Intro section End-->
 
 
 
 
-<div class="my-counter-section">
+<!-- banar section js start-->
+<script>
+(function () {
+    const canvas = document.getElementById('rrv-light-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const container = document.querySelector('.rrv-visual-panel');
+
+    const textItems = [
+        document.getElementById('rrv-item-1'),
+        document.getElementById('rrv-item-2'),
+        document.getElementById('rrv-item-3')
+    ];
+
+    let width, height;
+    let originX, originY, targetX, targetY;
+
+    function resizeCanvas() {
+        if (!container) return;
+        const dpr = window.devicePixelRatio || 1;
+        width = container.offsetWidth;
+        height = container.offsetHeight;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        if (window.innerWidth <= 968) {
+            originX = width * 0.05;
+            targetX = width * 0.92;
+        } else {
+            originX = width * 0.02;
+            targetX = width * 0.84;
+        }
+        originY = height / 2;
+        targetY = height / 2;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const duration = 9500;
+    let startTime = null;
+
+    function easeInOutQuint(t) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+    }
+
+    function draw(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let elapsed = timestamp - startTime;
+        let globalProgress = (elapsed % duration) / duration;
+
+        ctx.clearRect(0, 0, width, height);
+
+        if (globalProgress <= 0.30) {
+            textItems[0].className = "rrv-list-item";
+            textItems[1].className = "rrv-list-item fade-out";
+            textItems[2].className = "rrv-list-item fade-out";
+        } else if (globalProgress > 0.30 && globalProgress <= 0.60) {
+            textItems[0].className = "rrv-list-item";
+            textItems[1].className = "rrv-list-item";
+            textItems[2].className = "rrv-list-item fade-out";
+        } else {
+            textItems[0].className = "rrv-list-item";
+            textItems[1].className = "rrv-list-item";
+            textItems[2].className = "rrv-list-item";
+        }
+
+        // STAGE 1: Straight Line Growth (0% to 30%)
+        if (globalProgress <= 0.30) {
+            let p = globalProgress / 0.30;
+            let easeP = easeInOutQuint(p);
+
+            ctx.beginPath();
+            ctx.moveTo(originX, originY);
+            ctx.lineTo(originX + (targetX - originX) * easeP, originY);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.95)";
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            ctx.save();
+            let auraGrad = ctx.createRadialGradient(targetX, targetY, 0, targetX, targetY, 60 * easeP);
+            auraGrad.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+            auraGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = auraGrad;
+            ctx.beginPath();
+            ctx.arc(targetX, targetY, 60 * easeP, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // STAGE 2 & 3: Fluid Fan (30% to 85%)
+        else if (globalProgress > 0.30 && globalProgress <= 0.85) {
+            let p = (globalProgress - 0.30) / 0.55;
+            let easeP = easeInOutQuint(p);
+
+            ctx.beginPath();
+            ctx.moveTo(originX, originY);
+            ctx.lineTo(targetX, originY);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.95 * (1 - easeP * 0.85)})`;
+            ctx.lineWidth = 2.5 * (1 - easeP * 0.5);
+            ctx.stroke();
+
+            let maxRays = 110;
+            let totalRays = Math.max(1, Math.floor(maxRays * easeP));
+            let maxAngleDegree = 0.5 + (87.5 * easeP);
+
+            ctx.save();
+            for (let i = 0; i < totalRays; i++) {
+                let divisor = (totalRays > 1) ? (totalRays - 1) : 1;
+                let angle = ((i / divisor) - 0.5) * maxAngleDegree * (Math.PI / 180);
+                let currentLength = (targetX - originX) * (0.45 + easeP * 0.53);
+
+                let startRkX = targetX - Math.cos(angle) * currentLength;
+                let startRkY = targetY - Math.sin(angle) * currentLength;
+
+                let drawStartX = Math.max(originX, startRkX);
+
+                ctx.beginPath();
+                ctx.moveTo(drawStartX, startRkY);
+                ctx.lineTo(targetX, targetY);
+
+                let dynamicGrad = ctx.createLinearGradient(drawStartX, startRkY, targetX, targetY);
+                dynamicGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                dynamicGrad.addColorStop(0.35, `rgba(255, 255, 255, ${(0.25 + (easeP * 0.20))})`);
+                dynamicGrad.addColorStop(1, `rgba(255, 255, 255, ${(0.80 + (easeP * 0.20))})`);
+
+                ctx.strokeStyle = dynamicGrad;
+                ctx.lineWidth = 0.80 + (0.45 * easeP);
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            ctx.save();
+            let dynamicRadius = 65 + (45 * easeP);
+            let burstGlow = ctx.createRadialGradient(targetX, targetY, 0, targetX, targetY, dynamicRadius);
+            burstGlow.addColorStop(0, `rgba(255, 255, 255, ${0.7 + (easeP * 0.25)})`);
+            burstGlow.addColorStop(0.2, `rgba(255, 255, 255, ${0.4 + (easeP * 0.15)})`);
+            burstGlow.addColorStop(0.5, `rgba(255, 255, 255, ${0.1 + (easeP * 0.05)})`);
+            burstGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = burstGlow;
+            ctx.beginPath();
+            ctx.arc(targetX, targetY, dynamicRadius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // STAGE 4: Fade-Out Loop (85% to 100%)
+        else {
+            let p = (globalProgress - 0.85) / 0.15;
+            let easeP = easeInOutQuint(p);
+            let opacity = 1 - easeP;
+
+            let totalRays = 110;
+            let maxAngleDegree = 88;
+
+            ctx.save();
+            for (let i = 0; i < totalRays; i++) {
+                let angle = ((i / (totalRays - 1)) - 0.5) * maxAngleDegree * (Math.PI / 180);
+                let rayDistance = (targetX - originX) * 0.98;
+
+                let startRkX = targetX - Math.cos(angle) * rayDistance;
+                let startRkY = targetY - Math.sin(angle) * rayDistance;
+
+                ctx.beginPath();
+                ctx.moveTo(Math.max(originX, startRkX), startRkY);
+                ctx.lineTo(targetX, targetY);
+
+                let dynamicGrad = ctx.createLinearGradient(Math.max(originX, startRkX), startRkY, targetX, targetY);
+                dynamicGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                dynamicGrad.addColorStop(0.4, `rgba(255, 255, 255, ${0.45 * opacity})`);
+                dynamicGrad.addColorStop(1, `rgba(255, 255, 255, ${1.0 * opacity})`);
+
+                ctx.strokeStyle = dynamicGrad;
+                ctx.lineWidth = 1.25 * opacity;
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            ctx.save();
+            let endGlow = ctx.createRadialGradient(targetX, targetY, 0, targetX, targetY, 110);
+            endGlow.addColorStop(0, `rgba(255, 255, 255, ${0.95 * opacity})`);
+            endGlow.addColorStop(0.3, `rgba(255, 255, 255, ${0.55 * opacity})`);
+            endGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = endGlow;
+            ctx.beginPath();
+            ctx.arc(targetX, targetY, 110, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // Endpoint Nodes
+        ctx.beginPath();
+        ctx.arc(originX, originY, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(targetX, targetY, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+
+        requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+})();
+</script>
+
+
   <style>
-
-
-    .my-counter-section {
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-     
-      background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
-                  url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1600') no-repeat center center/cover;
-      padding: 80px 20px;
-      display: block;
-      margin-top: 150px;
-      margin-bottom: 100px;
-      width: 100%;
-    }
-
-    .my-counter-section *, .my-counter-section *::before, .my-counter-section *::after {
-      box-sizing: border-box;
-    }
-
-    /* Cards Grid Layout */
-    .my-counter-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      width: 100%;
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-
-    /* Exact White Card Design Like Screenshot */
-    .my-counter-card {
-      background-color: #ffffff;
-      border-radius: 15px;
-      padding: 45px 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease;
-    }
-
-    .my-counter-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Target Number Color & Typography */
-    .my-counter-number {
-      font-size: 3.2rem;
-      font-weight: 700;
-      color: #a34e56; /* Screenshot wala Maroon/Dusty Rose color */
-      margin-bottom: 15px;
-      display: block;
-      line-height: 1;
-    }
-
-    /* Bottom Labels */
-    .my-counter-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #555555;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      display: block;
-    }
-
-    /* Responsive (Mobile aur Tablet ke liye) */
-    @media (max-width: 992px) {
-      .my-counter-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 576px) {
-      .my-counter-container {
-        grid-template-columns: 1fr;
-      }
-    }
+  
   </style>
 
+
+
+
+
+<div class="my-counter-section">
   <div class="my-counter-container">
     <div class="my-counter-card">
       <span class="my-counter-number" data-target="37">0</span>

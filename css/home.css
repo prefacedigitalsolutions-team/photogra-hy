@@ -293,6 +293,19 @@ body {
     transition:.3s;
 }
 
+/* mobile number add */
+
+.pnav__phone a{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #fff; 
+}
+
+.pnav__phone a:hover{
+    color: #ff0000;
+}
 
 
 @media (max-width: 991px){

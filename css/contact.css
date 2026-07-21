@@ -1,4 +1,76 @@
 
+
+
+/* contact banar section start */
+
+  .slider-container {
+    width: 100%;
+    height: 20vh;
+    overflow: hidden; 
+    position: relative;
+  }
+
+  .slider-track {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    animation: smoothSlide 10s infinite;
+  }
+
+  .slider-track img {
+    width: 33.33%; 
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes smoothSlide {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(0); } 
+    40%  { transform: translateX(-33.33%); } 
+    80%  { transform: translateX(-33.33%); } 
+    90%  { transform: translateX(-66.66%); } 
+    100% { transform: translateX(-66.66%); } 
+  }
+
+
+@media (max-width: 992px) {
+  .slider-container {
+    height: 18vh;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .slider-container {
+    height: 16vh;
+  }
+
+  .slider-track img {
+    object-position: center;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .slider-container {
+    height: 14vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-container {
+    height: 12vh;
+  }
+}
+
+
+/* Banar section End */
+
+
+
+
+
+
 /* intro section start */
 
   .contact-section {
