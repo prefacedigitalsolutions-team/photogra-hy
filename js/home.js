@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dots = document.querySelectorAll(".dot");
 
     function showSlide(i) {
-        // Safe check: Agar slides aur dots page par hai tabhi run ho 
+        // slider page par ho tab run ho
         if (slides.length > 0 && dots.length > 0) {
             slides.forEach((s, idx) => {
                 s.classList.remove("active");
@@ -376,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prevBtn) {
         prevBtn.addEventListener("click", prev);
     }           
+
 
     // Dots par event listener bhi tabhi lage jab dots page par ho
     if (dots.length > 0) {
